@@ -29,7 +29,7 @@ app.get('/livros', async (req, res) => {
     console.log(listaLivros)
 })
 
-app.get('/livros/:id', (req, res) => {
+app.get('/livros/:id', async (req, res) => {
     const index = buscaLivros(req.params.id);
     res.status(200).json(livros[index])
  })
