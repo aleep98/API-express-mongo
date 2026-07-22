@@ -23,15 +23,10 @@ app.get('/', (req, res) => {
     res.status(200).send('Curso de Node.js')
 })
 
-app.get('/livros', async (req, res) => {
-    const listaLivros = await livro.find({});
-    res.status(200).json(listaLivros);
-    console.log(listaLivros)
-})
-
 app.get('/livros/:id', async (req, res) => {
-    const index = buscaLivros(req.params.id);
-    res.status(200).json(livros[index])
+    const index = livro.findById(req.params.id);
+    res.status(200).json(index);
+    console.log(index)
  })
 
 app.post('/livros', (req, res) =>{
