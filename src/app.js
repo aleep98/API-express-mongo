@@ -17,27 +17,6 @@ conexao.once('open', () => {
 })
 
 
-app.get('/livros/:id', async (req, res) => {
-    const index = livro.findById(req.params.id);
-    res.status(200).json(index);
-    console.log(index)
- })
-
-app.post('/livros', (req, res) =>{
-   if (!req.body || Object.keys(req.body).length ===0) {
-    console.log(chalk.red('Erro ao cadastrar livro'))
-    return res.status(400).send('Dados do livro não enviados!')
-   }
-
-   livros.push(req.body)
-   res.status(201).send('Livro cadastrado com sucesso!')
-})
-
-app.put('/livros/:id', (req, res) => {
-    const index = buscaLivros(req.params.id);
-    livros[index].titulo = req.body.titulo;
-    res.status(200).send.json(livros);
-})
 
 app.delete('/livros/:id', (req, res) => {
     const index = buscaLivros(req.params.id);
