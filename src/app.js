@@ -1,10 +1,10 @@
 import chalk from 'chalk';
 import express from 'express';
 import connectDatabase from '../src/config/database.js';
-import livro from '../src/models/Livro.js'
-
+import routes from './routes/index.js';
 
 const app = express();
+routes(app);
 
 const conexao = await connectDatabase();
 
@@ -16,12 +16,6 @@ conexao.once('open', () => {
     console.log(chalk.green("Conectado ao banco de dados"))
 })
 
-app.use(express.json());
-
-
-app.get('/', (req, res) => {
-    res.status(200).send('Curso de Node.js')
-})
 
 app.get('/livros/:id', async (req, res) => {
     const index = livro.findById(req.params.id);
