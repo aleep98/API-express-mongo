@@ -1,10 +1,10 @@
-import livro from '../models/Livro.js'
+import autores from '../models/Autor.js'
 
 class AutorController {
     static async listarAutores (req, res) {
 
         try {
-            const listarAutores = await autor.find({});
+            const listarAutores = await autores.find({});
             res.status(200).json(listarAutores);
             
         } catch (erro) {
@@ -17,7 +17,7 @@ class AutorController {
 
         try {
             const id = req.params.id;
-            const autorEncontrado = await autor.findById(id);
+            const autorEncontrado = await autores.findById(id);
             res.status(200).json(autorEncontrado);
             
         } catch (erro) {
@@ -28,7 +28,7 @@ class AutorController {
 
     static async cadastrarAutor (req, res) {
         try {
-            const autorNovo = await autor.create(req.body);
+            const autorNovo = await autores.create(req.body);
             res.status(201).json({ message: 'Autor cadastrado com sucesso', autor: autorNovo });
         } catch (erro) {
             res.status(500).json({message: `Erro ao cadastrar autor: ${erro.message}`});
@@ -39,7 +39,7 @@ class AutorController {
 
         try {
             const id = req.params.id;
-            await autor.findByIdAndUpdate(id, req.body);
+            await autores.findByIdAndUpdate(id, req.body);
             res.status(200).json({ message: 'Autor atualizado com sucesso' });
         } catch (erro) {
             res.status(500).json({message: `Erro ao atualizar autor: ${erro.message}`});
@@ -50,7 +50,7 @@ class AutorController {
 
         try {
             const id = req.params.id;
-            await autor.findByIdAndDelete(id);
+            await autores.findByIdAndDelete(id);
             res.status(200).json({ message: 'Autor deletado com sucesso' });
         } catch (erro) {
             res.status(500).json({message: `Erro ao deletar autor: ${erro.message}`});
