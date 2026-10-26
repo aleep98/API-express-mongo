@@ -19,4 +19,3 @@ conexao.once('open', () => {
 
 export default app;
 
-// mongodb+srv://alura123:<alura123>@alura.frbnofk.mongodb.net/?appName=alura
