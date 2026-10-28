@@ -10,7 +10,7 @@ class LivroController {
 
       res.status(200).json(livrosResultado);
     } catch (erro) {
-      res.status(500).json({ message: "Erro interno no servidor" });
+      res.status(500).json({ message: `Nenhum livro encontrado: ${erro.message}` });
     }
   };
 
@@ -24,7 +24,7 @@ class LivroController {
 
       res.status(200).send(livroResultados);
     } catch (erro) {
-      res.status(400).send({message: `${erro.message} - Id do livro não localizado.`});
+      res.status(400).send({message: `ID do Livro não encontrado: ${erro.message}`});
     }
   };
 
@@ -36,7 +36,7 @@ class LivroController {
 
       res.status(201).send(livroResultado.toJSON());
     } catch (erro) {
-      res.status(500).send({message: `${erro.message} - falha ao cadastrar livro.`});
+      res.status(500).send({message: `Falha ao cadastrar livro: ${erro.message}`});
     }
   };
 
@@ -48,11 +48,11 @@ class LivroController {
     
       res.status(200).send({message: "Livro atualizado com sucesso"});
     } catch (erro) {
-      res.status(500).send({message: erro.message});
+      res.status(500).send({message: `Falha ao atualizar livro: ${erro.message}`});
     }
   };
 
-  static excluirLivro = async (req, res) => {
+  static deletarLivro = async (req, res) => {
     try {
       const id = req.params.id;
 
@@ -60,7 +60,7 @@ class LivroController {
 
       res.status(200).send({message: "Livro removido com sucesso"});
     } catch (erro) {
-      res.status(500).send({message: erro.message});
+      res.status(500).send({message: `Falha ao excluir livro: ${erro.message}`});
     }
   };
 
@@ -72,7 +72,7 @@ class LivroController {
 
       res.status(200).send(livrosResultado);
     } catch (erro) {
-      res.status(500).json({ message: "Erro interno no servidor" });
+      res.status(500).json({ message: `Nenhum livro encontrado: ${erro.message}` });
     }
   };
 }
