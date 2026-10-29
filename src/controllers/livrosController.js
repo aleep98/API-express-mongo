@@ -4,6 +4,7 @@ class LivroController {
 
   static listarLivros = async (req, res, next) => {
     try {
+      
       const livrosResultado = await livros.find()
         .populate("autor")
         .exec();
