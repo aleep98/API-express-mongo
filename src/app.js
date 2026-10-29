@@ -3,6 +3,7 @@ import express from 'express';
 import connectDatabase from '../src/config/database.js';
 import routes from './routes/index.js';
 import manipuladorDeErros from './meddlewares/manipuladorDeErros.js';
+import manipulador404 from './meddlewares/manipulador404.js';
 
 const app = express();
 routes(app);
@@ -16,6 +17,8 @@ conexao.on('error', (erro) => {
 conexao.once('open', () => {
     console.log(chalk.green("Conectado ao banco de dados"))
 })
+
+app.use(manipulador404);
 
 app.use(manipuladorDeErros);
 
