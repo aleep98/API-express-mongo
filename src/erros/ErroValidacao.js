@@ -6,7 +6,7 @@ class ErroValidacao extends RequisicaoIncorreta {
         const mensagensErro = Object.values(erro.errors)
             .map(erro => erro.message)
             .join('; ');
-        super(`Erros de validação: ${mensagensErro}`);
+        super(`Erros de validação: ${mensagensErro}`.toString());
     }
 }
 
