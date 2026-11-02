@@ -67,7 +67,7 @@ class LivroController {
       const id = req.params.id;
 
       const livroResultado = await livros.findByIdAndDelete(id);
-      if (livroResultado === null) {
+      if (livroResultado !== null) {
         res.status(200).json({message: "Livro removido com sucesso"});
       }else{
         next( new NaoEncontrado(`ID do livro não encontrado`));

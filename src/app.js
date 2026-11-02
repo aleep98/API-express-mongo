@@ -1,9 +1,9 @@
 import chalk from 'chalk';
 import express from 'express';
-import connectDatabase from '../src/config/database.js';
+import connectDatabase from './config/database.js';
 import routes from './routes/index.js';
-import manipuladorDeErros from './meddlewares/manipuladorDeErros.js';
-import manipulador404 from './meddlewares/manipulador404.js';
+import manipuladorDeErros from './middlewares/manipuladorDeErros.js';
+import manipulador404 from './middlewares/manipulador404.js';
 
 const app = express();
 routes(app);
@@ -23,4 +23,3 @@ app.use(manipulador404);
 app.use(manipuladorDeErros);
 
 export default app;
-
