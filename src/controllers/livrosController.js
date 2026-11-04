@@ -81,10 +81,23 @@ class LivroController {
     try {
       const {editora, titulo} = req.query;
 
+      const minPaginas = Number(req.query.minPaginas);
+      const maxPaginas = Number(req.query.maxPaginas);
       const busca = {};
 
+      if (req.query.minPaginas || req.query.maxPaginas) {
+        busca.paginas = {
+          $gte: minPaginas || 100,
+          $lte: maxPaginas || 500
+        };
+      }
+
       if (editora) busca.editora = editora;
-      if (titulo) busca.titulo = titulo;
+      if (titulo) busca.titulo = {
+        $regex: titulo,
+        $options: "i",
+      
+      }
 
       const livrosResultado = await livros.find(busca);
 
